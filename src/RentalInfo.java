@@ -1,12 +1,13 @@
 import java.util.HashMap;
 
 public class RentalInfo {
-  private HashMap<String, Movie> movies;
+  private static final String REGULAR = "regular";
+  final private HashMap<String, Movie> movies;
 
   public RentalInfo() {
     movies = new HashMap<>();
-    movies.put("F001", new Movie("You've Got Mail", "regular"));
-    movies.put("F002", new Movie("Matrix", "regular"));
+    movies.put("F001", new Movie("You've Got Mail", REGULAR));
+    movies.put("F002", new Movie("Matrix", REGULAR));
     movies.put("F003", new Movie("Cars", "childrens"));
     movies.put("F004", new Movie("Fast & Furious X", "new"));
   }
@@ -33,7 +34,7 @@ public class RentalInfo {
     Movie movie = movies.get(rental.getMovieId());
     double thisAmount = 0;
 
-    if (movie.getCode().equals("regular")) {
+    if (movie.getCode().equals(REGULAR)) {
       thisAmount = 2;
       if (rental.getDays() > 2) {
         thisAmount += (rental.getDays() - 2) * 1.5;
